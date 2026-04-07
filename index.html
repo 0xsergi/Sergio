@@ -15,7 +15,6 @@
     --border:rgba(0,255,65,0.12);--border-h:rgba(0,255,65,0.45);
     --font-mono:'JetBrains Mono','Courier New',monospace;
     --font-display:'Share Tech Mono',monospace;
-    /* تعريف الخط العربي الجديد */
     --font-arabic: 'Cairo', sans-serif;
     --radius:6px;--radius-lg:10px;
 }
@@ -26,8 +25,11 @@
 .scanlines{position:fixed;inset:0;z-index:0;
     background:repeating-linear-gradient(to bottom,transparent 0px,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px);
     pointer-events:none;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-arabic), var(--font-mono);
+
+/* جعل الخط الأساسي هو المونو الخاص باللينكس */
+body{background:var(--bg);color:var(--text);font-family:var(--font-mono);
     display:flex;justify-content:center;padding:40px 20px;margin:0;min-height:100vh;position:relative;}
+
 body::before{content:'';position:fixed;top:0;left:50%;transform:translateX(-50%);
     width:600px;height:300px;background:radial-gradient(ellipse,rgba(0,255,65,0.04) 0%,transparent 70%);
     pointer-events:none;z-index:0;}
@@ -54,18 +56,22 @@ body::before{content:'';position:fixed;top:0;left:50%;transform:translateX(-50%)
 .profile-main{display:flex;align-items:center;padding:28px 24px 20px;gap:24px;direction:rtl;}
 .avatar{width:90px;height:90px;border-radius:50%;border:2px solid var(--green);
     box-shadow:0 0 0 4px rgba(0,255,65,0.08),0 0 20px var(--green-glow);
-    flex-shrink:0;order:2;transition:box-shadow 0.3s ease;}
+    flex-shrink:0;order:2;transition:box-shadow 0.3s ease; object-fit: cover;}
 .avatar:hover{box-shadow:0 0 0 4px rgba(0,255,65,0.15),0 0 35px var(--green-glow);}
 .profile-info{order:1;flex:1;}
+
+/* تطبيق الخط الفخم فقط على الاسم والوصف */
 .glitch{font-family:var(--font-arabic);font-size:1.8rem;font-weight:700;color:var(--green);
     position:relative;display:inline-block;text-shadow:0 0 12px rgba(0,255,65,0.6);line-height:1.2;margin-bottom:4px;}
+.bio{font-family:var(--font-arabic); color:var(--text-dim);font-size:0.88rem;margin:10px 0 14px;line-height:1.6;}
+.section-comment{font-family:var(--font-arabic); font-size:0.75rem;color:var(--text-muted);font-style:italic;direction:rtl;}
+
 .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;}
 .glitch::before{color:#0ff;clip-path:polygon(0 20%,100% 20%,100% 45%,0 45%);animation:glitch-a 5s infinite;transform:translateX(-3px);}
 .glitch::after{color:#f0f;clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);animation:glitch-b 5s infinite;transform:translateX(3px);}
 @keyframes glitch-a{0%,88%,100%{opacity:0;transform:translateX(0)}90%{opacity:1;transform:translateX(-4px)}92%{opacity:1;transform:translateX(4px)}94%{opacity:0}}
 @keyframes glitch-b{0%,88%,100%{opacity:0;transform:translateX(0)}91%{opacity:1;transform:translateX(4px)}93%{opacity:1;transform:translateX(-4px)}95%{opacity:0}}
-.bio{color:var(--text-dim);font-size:0.88rem;margin:10px 0 14px;line-height:1.6;}
-.bio-bracket{color:var(--text-muted);margin-left:4px;direction:ltr;display:inline-block;}
+.bio-bracket{color:var(--text-muted);margin-left:4px;direction:ltr;display:inline-block; font-family: var(--font-mono);}
 .tags{display:flex;flex-wrap:wrap;gap:6px;direction:ltr;}
 .tag{font-size:0.68rem;color:var(--green);border:1px solid var(--border);padding:3px 10px;
     border-radius:3px;background:var(--green-dim);letter-spacing:0.04em;transition:border-color 0.2s,background 0.2s;}
@@ -81,7 +87,6 @@ body::before{content:'';position:fixed;top:0;left:50%;transform:translateX(-50%)
 .section-header{display:flex;align-items:center;gap:0;margin-bottom:12px;direction:ltr;}
 .dollar-sign{color:var(--green);font-size:0.88rem;font-weight:700;}
 .section-title{font-family:var(--font-mono);font-size:0.82rem;font-weight:400;color:var(--text-dim);direction:ltr;margin-right:8px;}
-.section-comment{font-size:0.75rem;color:var(--text-muted);font-style:italic;direction:rtl;}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
 .grid.small{grid-template-columns:repeat(2,1fr);}
 .card{display:flex;align-items:center;justify-content:flex-start;gap:10px;padding:15px 18px;
@@ -108,7 +113,7 @@ body::before{content:'';position:fixed;top:0;left:50%;transform:translateX(-50%)
 .x-twitter:hover{border-color:rgba(255,255,255,0.2);}
 .reddit:hover{border-color:rgba(255,69,0,0.4);box-shadow:0 8px 30px rgba(0,0,0,0.5),0 0 20px rgba(255,69,0,0.12);}
 .reddit:hover i{color:#ff4500;}
-.terminal-footer{padding:16px 0 8px;border-top:1px solid var(--border);display:flex;align-items:center;gap:6px;font-size:0.8rem;direction:ltr;}
+.terminal-footer{padding:16px 0 8px;border-top:1px solid var(--border);display:flex;align-items:center;gap:6px;font-size:0.8rem;direction:ltr; font-family: var(--font-mono);}
 .footer-prompt{color:var(--green);}
 .footer-cursor{color:var(--green);animation:blink 1s step-end infinite;line-height:1;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -149,7 +154,7 @@ body::before{content:'';position:fixed;top:0;left:50%;transform:translateX(-50%)
                 <span class="t-cmd"> cat profile.txt</span>
             </div>
             <div class="profile-main">
-                <img src="assest/9bb7a2440792b5a5f94960f6d2a8b9c0.jpg" alt="avatar" class="avatar">
+                <img src="asset/9bb7a2440792b5a5f94960f6d2a8b9c0.jpg" alt="avatar" class="avatar">
                 <div class="profile-info">
                     <h1 class="glitch" data-text="سيرجيو | Sergio">سيرجيو | Sergio</h1>
                     <p class="bio"><span class="bio-bracket">//</span> متعلم ذاتي ينشر اشياء يتعلمها</p>
